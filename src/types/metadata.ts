@@ -8,6 +8,9 @@ export type GetOnchainMetadataResult = {
   validCIPversion: CIPTypes;
 };
 
-export type CIPTypes = 'CIP25v1' | 'CIP25v2' | null;
+export type DataVersion = 1 | 2 | null;
+export type CIPVersion = 25 | 68 | null;
+
+export type CIPTypes = 'CIP25v1' | 'CIP25v2' | 'CIP68v1' | 'CIP68v2' | null;
 
 export type { Schemas, Asset };

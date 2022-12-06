@@ -1,15 +1,20 @@
 import { validateSchema } from '../index';
-import { CIPTypes, GetOnchainMetadataResult, Asset } from '../types/metadata';
+import {
+  CIPTypes,
+  GetOnchainMetadataResult,
+  Asset,
+  CIPVersion,
+  DataVersion,
+} from '../types/metadata';
 
-export const getCIPstandard = (version: number, isValid: boolean): CIPTypes => {
-  if (isValid) {
-    if (version === 1) {
-      return 'CIP25v1';
-    }
+export const getCIPstandard = (
+  dataVersion: DataVersion,
+  CIPVersion: CIPVersion,
+): CIPTypes => {
+  if (!dataVersion) return null;
 
-    if (version === 2) {
-      return 'CIP25v2';
-    }
+  if (CIPVersion) {
+    return `CIP${CIPVersion}v${dataVersion}`;
   }
 
   return null;
@@ -17,12 +22,16 @@ export const getCIPstandard = (version: number, isValid: boolean): CIPTypes => {
 
 export const getOnchainMetadataVersion = (
   onchainMetadata: Asset['onchain_metadata'],
-): number => {
+): DataVersion => {
   if (!onchainMetadata?.version) {
     return 1;
   }
 
-  return Number(onchainMetadata.version);
+  if (Number(onchainMetadata.version) === 2) {
+    return 2;
+  }
+
+  return null;
 };
 
 export const getOnchainMetadata = (
@@ -33,7 +42,10 @@ export const getOnchainMetadata = (
   let internalOnchainMetada: any = onchainMetadata;
 
   if (!internalOnchainMetada)
-    return { onchainMetadata: null, validCIPversion: null };
+    return {
+      onchainMetadata: null,
+      validCIPversion: null,
+    };
 
   let isFound = false;
   let onchainMetadataResult = null;
@@ -73,12 +85,27 @@ export const getOnchainMetadata = (
     }
   }
 
-  const { isValid } = validateSchema(
+  const cip25Result = validateSchema(
     'asset_onchain_metadata_cip25',
     onchainMetadataResult,
   );
 
-  const CIPVersion = getCIPstandard(version, isFound && isValid);
+  const cip68Result = validateSchema(
+    'asset_onchain_metadata_cip68',
+    onchainMetadataResult,
+  );
+
+  let validCIPVersion: CIPVersion = null;
+
+  if (cip25Result.isValid) {
+    validCIPVersion = 25;
+  }
+
+  if (cip68Result.isValid) {
+    validCIPVersion = 68;
+  }
+
+  const CIPVersion = getCIPstandard(version, isFound ? validCIPVersion : null);
 
   validCIPversion = CIPVersion;
 
