@@ -23,11 +23,14 @@ export const getSchemaForEndpoint = (endpointName: string) => {
   }
 
   const responses: any = { response: {} };
-  for (const response of Object.keys(spec.paths[endpointName].get.responses)) {
+  const method = 'post' in spec.paths[endpointName] ? 'post' : 'get';
+  for (const response of Object.keys(
+    spec.paths[endpointName][method].responses,
+  )) {
     // success 200
     if (response === '200') {
       const referenceOrValue =
-        spec.paths[endpointName].get.responses['200'].content[
+        spec.paths[endpointName][method].responses['200'].content[
           'application/json'
         ].schema;
 
@@ -82,7 +85,7 @@ export const getSchemaForEndpoint = (endpointName: string) => {
         responses.response[200] = anyOfResult;
       }
 
-      const parameters = spec.paths[endpointName].get.parameters;
+      const parameters = spec.paths[endpointName][method].parameters;
 
       if (parameters) {
         const queryParams = parameters.filter((i: any) => i.in === 'query');
@@ -159,6 +162,22 @@ export const getSchema = (schemaName: string) => {
   }
 
   return spec.components.schemas[schemaName];
+};
+
+export const generateSchemas = () => {
+  // Returns fast-json-stringify compatible schema object indexed by endpoint name
+  const endpoints = Object.keys(spec.paths);
+
+  const schemas: Record<string, unknown> = {};
+  for (const endpoint of endpoints) {
+    try {
+      schemas[endpoint] = getSchemaForEndpoint(endpoint);
+    } catch (error) {
+      console.error(`Error while processing endpoint ${endpoint}`);
+      throw error;
+    }
+  }
+  return schemas;
 };
 
 export const validateSchema = (schemaName: string, input: unknown) => {

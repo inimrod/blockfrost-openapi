@@ -1,4 +1,5 @@
 import { expect, describe, test } from 'vitest';
+import { generateSchemas } from '../../src/functions/schema';
 import { getSchemaForEndpoint } from '../../src/index';
 import {
   error400,
@@ -836,5 +837,9 @@ describe('getSchemaForEndpoint', () => {
         properties: { slot_number: { type: 'integer' } },
       },
     });
+  });
+
+  test(`generateSchemas`, async () => {
+    expect(generateSchemas()).toMatchSnapshot();
   });
 });
