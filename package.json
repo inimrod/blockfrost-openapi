@@ -1,8 +1,8 @@
 {
-  "name": "@blockfrost/openapi",
+  "name": "@inimrod/blockfrost-openapi",
   "version": "0.1.60",
-  "description": "OpenAPI specifications for blockfrost.io",
-  "repository": "git@github.com:blockfrost/openapi.git",
+  "description": "OpenAPI specification for blockfrost-ryo package with added customizations",
+  "repository": "git@github.com:inimrod/blockfrost-openapi.git",
   "author": "admin@blockfrost.io",
   "license": "MIT",
   "main": "lib/index.js",
