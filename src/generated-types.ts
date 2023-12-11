@@ -3772,7 +3772,7 @@ export interface paths {
                * @description Bech32 stake address.
                * @example stake1uxkfjunyks99xfclcq375g932yq0wvkndpnmdafq326lueg328k5c
                */
-              account?: string;
+              account: string;
               rewards: {
                 total: number;
                 claimed: number;

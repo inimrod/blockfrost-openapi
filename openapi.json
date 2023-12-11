@@ -7420,7 +7420,7 @@
                     }
                   },
                   "required": [
-                    "owner",
+                    "account",
                     "rewards"
                   ]
                 }

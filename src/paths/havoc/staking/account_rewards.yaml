@@ -37,7 +37,7 @@ get:
                   - claimed
                   - claimable
             required:
-              - owner
+              - account
               - rewards
     "400":
       $ref: ../../../responses/errors/400.yaml

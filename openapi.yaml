@@ -5433,7 +5433,7 @@ paths:
                       - claimed
                       - claimable
                 required:
-                  - owner
+                  - account
                   - rewards
         '400':
           $ref: '#/components/responses/400'
