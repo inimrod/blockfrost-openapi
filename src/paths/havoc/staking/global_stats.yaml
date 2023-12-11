@@ -1,0 +1,37 @@
+get:
+  tags:
+    - Havoc » Staking » Global stats
+  summary: Havoc Worlds staking global statistics
+  description: Information system-wide total staked tokens and total rewards
+  responses:
+    "200":
+      description: Return system-wide total staked tokens and total rewards
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              drifters_total:
+                type: integer
+                example: 10100
+              drifters_staked:
+                type: integer
+                example: 6969
+              rewards_issued:
+                type: number
+                example: 1234.123456
+            required:
+              - drifters_total
+              - drifters_staked
+    "400":
+      $ref: ../../../responses/errors/400.yaml
+    "403":
+      $ref: ../../../responses/errors/403.yaml
+    "404":
+      $ref: ../../../responses/errors/404.yaml
+    "429":
+      $ref: ../../../responses/errors/429.yaml
+    "418":
+      $ref: ../../../responses/errors/418.yaml
+    "500":
+      $ref: ../../../responses/errors/500.yaml

@@ -5253,6 +5253,44 @@ paths:
           $ref: '#/components/responses/429'
         '500':
           $ref: '#/components/responses/500'
+  /havoc/staking/global-stats:
+    get:
+      tags:
+        - Havoc » Staking » Global stats
+      summary: Havoc Worlds staking global statistics
+      description: Information system-wide total staked tokens and total rewards
+      responses:
+        '200':
+          description: Return system-wide total staked tokens and total rewards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  drifters_total:
+                    type: integer
+                    example: 10100
+                  drifters_staked:
+                    type: integer
+                    example: 6969
+                  rewards_issued:
+                    type: number
+                    example: 1234.123456
+                required:
+                  - drifters_total
+                  - drifters_staked
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '418':
+          $ref: '#/components/responses/418'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
 components:
   schemas:
     onchain_metadata_cip25:

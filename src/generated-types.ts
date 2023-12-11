@@ -3634,6 +3634,35 @@ export interface paths {
       };
     };
   };
+  "/havoc/staking/global-stats": {
+    /**
+     * Havoc Worlds staking global statistics
+     * @description Information system-wide total staked tokens and total rewards
+     */
+    get: {
+      responses: {
+        /** @description Return system-wide total staked tokens and total rewards */
+        200: {
+          content: {
+            "application/json": {
+              /** @example 10100 */
+              drifters_total: number;
+              /** @example 6969 */
+              drifters_staked: number;
+              /** @example 1234.123456 */
+              rewards_issued?: number;
+            };
+          };
+        };
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
 }
 
 export type webhooks = Record<string, never>;

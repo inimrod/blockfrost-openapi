@@ -576,6 +576,9 @@ paths:
   /nutlink/tickers/{ticker}:
     $ref: ./paths/api/nutlink/tickers/{ticker}/index.yaml
 
+  /havoc/staking/global-stats:
+    $ref: ./paths/havoc/staking/global_stats.yaml
+
 components:
   schemas:
     onchain_metadata_cip25:
