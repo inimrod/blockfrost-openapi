@@ -3649,8 +3649,10 @@ export interface paths {
               drifters_total: number;
               /** @example 6969 */
               drifters_staked: number;
-              /** @example 1234.123456 */
-              rewards_issued?: number;
+              /** @example 1234123456 */
+              rewards_issued: number;
+              /** @example 1234123456 */
+              slot_in_epoch: number;
             };
           };
         };

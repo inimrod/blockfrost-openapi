@@ -18,11 +18,16 @@ get:
                 type: integer
                 example: 6969
               rewards_issued:
-                type: number
-                example: 1234.123456
+                type: integer
+                example: 1234123456
+              slot_in_epoch:
+                type: integer
+                example: 1234123456
             required:
               - drifters_total
               - drifters_staked
+              - rewards_issued
+              - slot_in_epoch
     "400":
       $ref: ../../../responses/errors/400.yaml
     "403":
