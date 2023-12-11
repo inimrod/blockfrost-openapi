@@ -1,0 +1,72 @@
+get:
+  tags:
+    - Havoc » Staking » Account assets
+  summary: Havoc Worlds tokens currently staked by an account
+  description: List of Havoc Worlds tokens currently staked by a staking account
+  parameters:
+    - in: path
+      name: stake_address
+      required: true
+      schema:
+        type: string
+      description: Bech32 stake address.
+      example: "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
+  responses:
+    "200":
+      description: Return list of staked Havoc Worlds tokens owned by an account
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              owner:
+                type: string
+                example: 'stake1uxkfjunyks99xfclcq375g932yq0wvkndpnmdafq326lueg328k5c'
+              drifters_staked:
+                type: array
+                items:
+                  type: object
+                  description: Details of an NFT that is being staked by an account
+                  properties:
+                    unit:
+                      type: string
+                      format: Concatenation of asset policy_id and hex-encoded asset_name
+                      description: The unit of the value
+                    quantity:
+                      type: string
+                      description: The quantity of the unit
+                    collection:
+                      type: string
+                      description: NFT collection name as identified by policy ID
+                    asset_name:
+                      type: string
+                      description: Human-readable token name
+                  required:
+                    - unit
+                    - quantity
+                    - collection
+                    - asset_name
+                example:
+                  - unit: "d5e6bf0500378d4f0da4e8dde6becec7621cd8cbf5cbb9b87013d4cc537061636542756433343132"
+                    quantity: "1"
+                    collection: "Genus"
+                    asset_name: "HavocWorlds6969"
+                  - unit: "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e"
+                    quantity: "1"
+                    collection: "Luminaries"
+                    asset_name: "Aspen Cade"
+            required:
+              - owner
+              - drifters_staked
+    "400":
+      $ref: ../../../responses/errors/400.yaml
+    "403":
+      $ref: ../../../responses/errors/403.yaml
+    "404":
+      $ref: ../../../responses/errors/404.yaml
+    "429":
+      $ref: ../../../responses/errors/429.yaml
+    "418":
+      $ref: ../../../responses/errors/418.yaml
+    "500":
+      $ref: ../../../responses/errors/500.yaml

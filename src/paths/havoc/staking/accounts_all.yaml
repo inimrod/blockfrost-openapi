@@ -1,0 +1,28 @@
+get:
+  tags:
+    - Havoc » Staking » All accounts
+  summary: All accounts currently staking Havoc Worlds tokens
+  description: List of staking accounts currently staking Havoc Worlds tokens
+  responses:
+    "200":
+      description: Return list of staking accounts currently staking Havoc Worlds tokens
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+              description: Bech32 stake address.
+              example: 'stake1uxkfjunyks99xfclcq375g932yq0wvkndpnmdafq326lueg328k5c'
+    "400":
+      $ref: ../../../responses/errors/400.yaml
+    "403":
+      $ref: ../../../responses/errors/403.yaml
+    "404":
+      $ref: ../../../responses/errors/404.yaml
+    "429":
+      $ref: ../../../responses/errors/429.yaml
+    "418":
+      $ref: ../../../responses/errors/418.yaml
+    "500":
+      $ref: ../../../responses/errors/500.yaml

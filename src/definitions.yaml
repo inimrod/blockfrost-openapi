@@ -579,6 +579,15 @@ paths:
   /havoc/staking/global-stats:
     $ref: ./paths/havoc/staking/global_stats.yaml
 
+  /havoc/staking/accounts:
+    $ref: ./paths/havoc/staking/accounts_all.yaml
+
+  /havoc/staking/{account}/assets:
+    $ref: ./paths/havoc/staking/account_assets.yaml
+
+  /havoc/staking/{account}/rewards:
+    $ref: ./paths/havoc/staking/account_rewards.yaml
+
 components:
   schemas:
     onchain_metadata_cip25:

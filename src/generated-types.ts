@@ -3663,6 +3663,133 @@ export interface paths {
       };
     };
   };
+  "/havoc/staking/accounts": {
+    /**
+     * All accounts currently staking Havoc Worlds tokens
+     * @description List of staking accounts currently staking Havoc Worlds tokens
+     */
+    get: {
+      responses: {
+        /** @description Return list of staking accounts currently staking Havoc Worlds tokens */
+        200: {
+          content: {
+            "application/json": string[];
+          };
+        };
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
+  "/havoc/staking/{account}/assets": {
+    /**
+     * Havoc Worlds tokens currently staked by an account
+     * @description List of Havoc Worlds tokens currently staked by a staking account
+     */
+    get: {
+      parameters: {
+        path: {
+          /**
+           * @description Bech32 stake address.
+           * @example stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc
+           */
+          stake_address: string;
+        };
+      };
+      responses: {
+        /** @description Return list of staked Havoc Worlds tokens owned by an account */
+        200: {
+          content: {
+            "application/json": {
+              /** @example stake1uxkfjunyks99xfclcq375g932yq0wvkndpnmdafq326lueg328k5c */
+              owner: string;
+              /**
+               * @example [
+               *   {
+               *     "unit": "d5e6bf0500378d4f0da4e8dde6becec7621cd8cbf5cbb9b87013d4cc537061636542756433343132",
+               *     "quantity": "1",
+               *     "collection": "Genus",
+               *     "asset_name": "HavocWorlds6969"
+               *   },
+               *   {
+               *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+               *     "quantity": "1",
+               *     "collection": "Luminaries",
+               *     "asset_name": "Aspen Cade"
+               *   }
+               * ]
+               */
+              drifters_staked: {
+                  /**
+                   * Format: Concatenation of asset policy_id and hex-encoded asset_name
+                   * @description The unit of the value
+                   */
+                  unit: string;
+                  /** @description The quantity of the unit */
+                  quantity: string;
+                  /** @description NFT collection name as identified by policy ID */
+                  collection: string;
+                  /** @description Human-readable token name */
+                  asset_name: string;
+                }[];
+            };
+          };
+        };
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
+  "/havoc/staking/{account}/rewards": {
+    /**
+     * Rewards earned by a staking account
+     * @description Information on staking rewards earned by a staking account
+     */
+    get: {
+      parameters: {
+        path: {
+          /**
+           * @description Bech32 stake address.
+           * @example stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc
+           */
+          stake_address: string;
+        };
+      };
+      responses: {
+        /** @description Return staking rewards, both total and pending claim, earned by an account */
+        200: {
+          content: {
+            "application/json": {
+              /**
+               * @description Bech32 stake address.
+               * @example stake1uxkfjunyks99xfclcq375g932yq0wvkndpnmdafq326lueg328k5c
+               */
+              account?: string;
+              rewards: {
+                total: number;
+                claimed: number;
+                claimable: number;
+              };
+            };
+          };
+        };
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
 }
 
 export type webhooks = Record<string, never>;
