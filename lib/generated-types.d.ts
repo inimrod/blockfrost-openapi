@@ -3714,13 +3714,17 @@ export interface paths {
                              *     "unit": "d5e6bf0500378d4f0da4e8dde6becec7621cd8cbf5cbb9b87013d4cc537061636542756433343132",
                              *     "quantity": "1",
                              *     "collection": "Genus",
-                             *     "asset_name": "HavocWorlds6969"
+                             *     "asset_name": "HavocWorlds6969",
+                             *     "rewards_claimable": 69123123,
+                             *     "rewards_claimed": 50987654
                              *   },
                              *   {
                              *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
                              *     "quantity": "1",
                              *     "collection": "Luminaries",
-                             *     "asset_name": "Aspen Cade"
+                             *     "asset_name": "Aspen Cade",
+                             *     "rewards_claimable": 172654321,
+                             *     "rewards_claimed": 547021365
                              *   }
                              * ]
                              */
@@ -3736,6 +3740,10 @@ export interface paths {
                                 collection: string;
                                 /** @description Human-readable token name */
                                 asset_name: string;
+                                /** @description Still claimable VOQ rewards earned by this token for its current owner account */
+                                rewards_claimable: number;
+                                /** @description Already claimed VOQ rewards earned by this token for its current owner account */
+                                rewards_claimed: number;
                             }[];
                         };
                     };
