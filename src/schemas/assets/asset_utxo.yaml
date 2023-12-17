@@ -1,0 +1,69 @@
+type: object
+properties:
+  tx_hash:
+    type: string
+    example: "c468aa69722265efc02869c7a1ff784eeadd2994948b81a6ef8b6ce475c8ca22"
+    description: Transaction hash
+  address:
+    type: string
+    example: "addr1q9ld26v2lv8wvrxxmvg90pn8n8n5k6tdst06q2s856rwmvnueldzuuqmnsye359fqrk8hwvenjnqultn7djtrlft7jnq7dy7wv"
+    description: Output address
+  amount:
+    type: array
+    items:
+      type: object
+      description: The sum of all the UTXO per asset
+      properties:
+        unit:
+          type: string
+          format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+          description: The unit of the value
+        quantity:
+          type: string
+          description: The quantity of the unit
+      required:
+        - unit
+        - quantity
+    example:
+      - unit: "lovelace"
+        quantity: "42000000"
+      - unit: "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e"
+        quantity: "12"
+  output_index:
+    type: integer
+    example: 0
+    description: UTXO index in the transaction
+  data_hash:
+    type: string
+    nullable: true
+    description: The hash of the transaction output datum
+    example: "9e478573ab81ea7a8e31891ce0648b81229f408d596a3483e6f4f9b92d3cf710"
+  inline_datum:
+    type: string
+    nullable: true
+    description: CBOR encoded inline datum
+    example: "19a6aa"
+  collateral:
+    type: boolean
+    example: false
+    description: Whether the output is a collateral output
+  reference_script_hash:
+    type: string
+    nullable: true
+    description: The hash of the reference script of the output
+    example: "13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1"
+  ref_script_cbor:
+    type: string
+    nullable: true
+    description: CBOR contents of the `plutus` script, null for `timelocks`
+    example: "4e4d01000033222220051200120011"
+required:
+  - tx_hash
+  - address
+  - amount
+  - output_index
+  - data_hash
+  - inline_datum
+  - collateral
+  - reference_script_hash
+  - ref_script_cbor

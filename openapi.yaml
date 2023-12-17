@@ -5464,6 +5464,80 @@ paths:
           $ref: '#/components/responses/429'
         '500':
           $ref: '#/components/responses/500'
+  /havoc/staking/{asset}/utxo:
+    get:
+      tags:
+        - Havoc » Staking » Token UTXO
+      summary: Current UTXO containing the given asset
+      description: Get the current UTXO containing a given asset
+      parameters:
+        - in: path
+          name: asset
+          required: true
+          schema:
+            type: string
+          description: Concatenation of policy ID and hex encoded token name
+          example: d517cc7aced854b7fa31c4abadd8848e5487e77107e9a9daa4c2d24a536c6569736520427261776c6572
+      responses:
+        '200':
+          description: Return the current UTXO containing the given assetId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/asset_utxo'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '418':
+          $ref: '#/components/responses/418'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+  /havoc/staking/submit:
+    post:
+      tags:
+        - Havoc » Staking » Submit
+      summary: Submit Havoc Worlds staking and unstaking txs
+      description: Submit staking and unstaking txs
+      requestBody:
+        description: |
+          The transaction to submit, serialized in CBOR.
+        required: true
+        content:
+          application/cbor:
+            schema:
+              type: string
+              description: |
+                The transaction to submit, serialized in CBOR.
+            example: |
+              83a400818258208911f640d452c3be4ff3d89db63b41ce048c056951286e2e28bbf8a51588ab44000181825839009493315cd92eb5d8c4304e67b7e16ae36d61d34502694657811a2c8e32c728d3861e164cab28cb8f006448139c8f1740ffb8e7aa9e5232dc1a10b2531f021a00029519075820cb798b0bce50604eaf2e0dc89367896b18f0a6ef6b32b57e3c9f83f8ee71e608a1008182582073fea80d424276ad0978d4fe5310e8bc2d485f5f6bb3bf87612989f112ad5a7d5840c40425229749a9434763cf01b492057fd56d7091a6372eaa777a1c9b1ca508c914e6a4ee9c0d40fc10952ed668e9ad65378a28b149de6bd4204bd9f095b0a902a11907b0a1667469636b657281a266736f757263656b736f757263655f6e616d656576616c7565736675676961742076656e69616d206d696e7573
+      responses:
+        '200':
+          description: Returns tx id of submitted tx
+          content:
+            application/json:
+              schema:
+                type: string
+                format: hex
+                minLength: 64
+                maxLength: 64
+                example: d1662b24fa9fe985fc2dce47455df399cb2e31e1e1819339e885801cc3578908
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '418':
+          $ref: '#/components/responses/418'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
 components:
   schemas:
     onchain_metadata_cip25:
@@ -8697,6 +8771,76 @@ components:
               value: '1.29'
             - source: cryptoCompare
               value: '1.283'
+    asset_utxo:
+      type: object
+      properties:
+        tx_hash:
+          type: string
+          example: c468aa69722265efc02869c7a1ff784eeadd2994948b81a6ef8b6ce475c8ca22
+          description: Transaction hash
+        address:
+          type: string
+          example: addr1q9ld26v2lv8wvrxxmvg90pn8n8n5k6tdst06q2s856rwmvnueldzuuqmnsye359fqrk8hwvenjnqultn7djtrlft7jnq7dy7wv
+          description: Output address
+        amount:
+          type: array
+          items:
+            type: object
+            description: The sum of all the UTXO per asset
+            properties:
+              unit:
+                type: string
+                format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+                description: The unit of the value
+              quantity:
+                type: string
+                description: The quantity of the unit
+            required:
+              - unit
+              - quantity
+          example:
+            - unit: lovelace
+              quantity: '42000000'
+            - unit: b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e
+              quantity: '12'
+        output_index:
+          type: integer
+          example: 0
+          description: UTXO index in the transaction
+        data_hash:
+          type: string
+          nullable: true
+          description: The hash of the transaction output datum
+          example: 9e478573ab81ea7a8e31891ce0648b81229f408d596a3483e6f4f9b92d3cf710
+        inline_datum:
+          type: string
+          nullable: true
+          description: CBOR encoded inline datum
+          example: 19a6aa
+        collateral:
+          type: boolean
+          example: false
+          description: Whether the output is a collateral output
+        reference_script_hash:
+          type: string
+          nullable: true
+          description: The hash of the reference script of the output
+          example: 13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1
+        ref_script_cbor:
+          type: string
+          nullable: true
+          description: CBOR contents of the `plutus` script, null for `timelocks`
+          example: 4e4d01000033222220051200120011
+      required:
+        - tx_hash
+        - address
+        - amount
+        - output_index
+        - data_hash
+        - inline_datum
+        - collateral
+        - reference_script_hash
+        - ref_script_cbor
     asset_onchain_metadata_cip25:
       type: object
       additionalProperties: true

@@ -3799,6 +3799,66 @@ export interface paths {
             };
         };
     };
+    "/havoc/staking/{asset}/utxo": {
+        /**
+         * Current UTXO containing the given asset
+         * @description Get the current UTXO containing a given asset
+         */
+        get: {
+            parameters: {
+                path: {
+                    /**
+                     * @description Concatenation of policy ID and hex encoded token name
+                     * @example d517cc7aced854b7fa31c4abadd8848e5487e77107e9a9daa4c2d24a536c6569736520427261776c6572
+                     */
+                    asset: string;
+                };
+            };
+            responses: {
+                /** @description Return the current UTXO containing the given assetId */
+                200: {
+                    content: {
+                        "application/json": components["schemas"]["asset_utxo"];
+                    };
+                };
+                400: components["responses"]["400"];
+                403: components["responses"]["403"];
+                404: components["responses"]["404"];
+                418: components["responses"]["418"];
+                429: components["responses"]["429"];
+                500: components["responses"]["500"];
+            };
+        };
+    };
+    "/havoc/staking/submit": {
+        /**
+         * Submit Havoc Worlds staking and unstaking txs
+         * @description Submit staking and unstaking txs
+         */
+        post: {
+            /** @description The transaction to submit, serialized in CBOR. */
+            requestBody: {
+                content: {
+                    /** @example 83a400818258208911f640d452c3be4ff3d89db63b41ce048c056951286e2e28bbf8a51588ab44000181825839009493315cd92eb5d8c4304e67b7e16ae36d61d34502694657811a2c8e32c728d3861e164cab28cb8f006448139c8f1740ffb8e7aa9e5232dc1a10b2531f021a00029519075820cb798b0bce50604eaf2e0dc89367896b18f0a6ef6b32b57e3c9f83f8ee71e608a1008182582073fea80d424276ad0978d4fe5310e8bc2d485f5f6bb3bf87612989f112ad5a7d5840c40425229749a9434763cf01b492057fd56d7091a6372eaa777a1c9b1ca508c914e6a4ee9c0d40fc10952ed668e9ad65378a28b149de6bd4204bd9f095b0a902a11907b0a1667469636b657281a266736f757263656b736f757263655f6e616d656576616c7565736675676961742076656e69616d206d696e7573 */
+                    "application/cbor": string;
+                };
+            };
+            responses: {
+                /** @description Returns tx id of submitted tx */
+                200: {
+                    content: {
+                        "application/json": string;
+                    };
+                };
+                400: components["responses"]["400"];
+                403: components["responses"]["403"];
+                404: components["responses"]["404"];
+                418: components["responses"]["418"];
+                429: components["responses"]["429"];
+                500: components["responses"]["500"];
+            };
+        };
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -6723,6 +6783,69 @@ export interface components {
                 [key: string]: unknown;
             } & (string | Record<string, never> | unknown[] | number | boolean);
         })[];
+        asset_utxo: {
+            /**
+             * @description Transaction hash
+             * @example c468aa69722265efc02869c7a1ff784eeadd2994948b81a6ef8b6ce475c8ca22
+             */
+            tx_hash: string;
+            /**
+             * @description Output address
+             * @example addr1q9ld26v2lv8wvrxxmvg90pn8n8n5k6tdst06q2s856rwmvnueldzuuqmnsye359fqrk8hwvenjnqultn7djtrlft7jnq7dy7wv
+             */
+            address: string;
+            /**
+             * @example [
+             *   {
+             *     "unit": "lovelace",
+             *     "quantity": "42000000"
+             *   },
+             *   {
+             *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+             *     "quantity": "12"
+             *   }
+             * ]
+             */
+            amount: {
+                /**
+                 * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+                 * @description The unit of the value
+                 */
+                unit: string;
+                /** @description The quantity of the unit */
+                quantity: string;
+            }[];
+            /**
+             * @description UTXO index in the transaction
+             * @example 0
+             */
+            output_index: number;
+            /**
+             * @description The hash of the transaction output datum
+             * @example 9e478573ab81ea7a8e31891ce0648b81229f408d596a3483e6f4f9b92d3cf710
+             */
+            data_hash: string | null;
+            /**
+             * @description CBOR encoded inline datum
+             * @example 19a6aa
+             */
+            inline_datum: string | null;
+            /**
+             * @description Whether the output is a collateral output
+             * @example false
+             */
+            collateral: boolean;
+            /**
+             * @description The hash of the reference script of the output
+             * @example 13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1
+             */
+            reference_script_hash: string | null;
+            /**
+             * @description CBOR contents of the `plutus` script, null for `timelocks`
+             * @example 4e4d01000033222220051200120011
+             */
+            ref_script_cbor: string | null;
+        };
         /**
          * @description On-chain metadata stored in the minting transaction under label 721,
          * which adheres to https://cips.cardano.org/cips/cip25/

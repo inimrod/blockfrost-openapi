@@ -1,0 +1,32 @@
+get:
+  tags:
+    - Havoc » Staking » Token UTXO
+  summary: Current UTXO containing the given asset
+  description: Get the current UTXO containing a given asset
+  parameters:
+    - in: path
+      name: asset
+      required: true
+      schema:
+        type: string
+      description: Concatenation of policy ID and hex encoded token name
+      example: "d517cc7aced854b7fa31c4abadd8848e5487e77107e9a9daa4c2d24a536c6569736520427261776c6572"
+  responses:
+    "200":
+      description: Return the current UTXO containing the given assetId
+      content:
+        application/json:
+          schema:
+            $ref: ../../../schemas/assets/asset_utxo.yaml
+    "400":
+      $ref: ../../../responses/errors/400.yaml
+    "403":
+      $ref: ../../../responses/errors/403.yaml
+    "404":
+      $ref: ../../../responses/errors/404.yaml
+    "429":
+      $ref: ../../../responses/errors/429.yaml
+    "418":
+      $ref: ../../../responses/errors/418.yaml
+    "500":
+      $ref: ../../../responses/errors/500.yaml

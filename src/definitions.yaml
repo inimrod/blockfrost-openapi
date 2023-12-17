@@ -588,6 +588,12 @@ paths:
   /havoc/staking/{account}/rewards:
     $ref: ./paths/havoc/staking/account_rewards.yaml
 
+  /havoc/staking/{asset}/utxo:
+    $ref: ./paths/havoc/staking/token_utxo.yaml
+
+  /havoc/staking/submit:
+    $ref: ./paths/havoc/staking/submit.yaml
+
 components:
   schemas:
     onchain_metadata_cip25:
