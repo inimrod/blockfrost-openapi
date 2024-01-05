@@ -1,8 +1,8 @@
 post:
   tags:
-    - Havoc » Staking » Submit
-  summary: Submit Havoc Worlds staking and unstaking txs
-  description: Submit staking and unstaking txs
+    - Havoc » VOQ drop » Submit
+  summary: Submit Havoc Worlds $VOQ token drop claim txs
+  description: Submit VOQ token drop claim txs
   requestBody:
     description: |
       The transaction to submit, serialized in CBOR. Plus the inputs dumped by Helios tx builder.

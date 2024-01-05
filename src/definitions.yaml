@@ -594,6 +594,9 @@ paths:
   /havoc/staking/submit:
     $ref: ./paths/havoc/staking/submit.yaml
 
+  /havoc/voq-drop/submit:
+    $ref: ./paths/havoc/voq-drop/submit.yaml
+
 components:
   schemas:
     onchain_metadata_cip25:
