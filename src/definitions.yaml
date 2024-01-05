@@ -594,6 +594,9 @@ paths:
   /havoc/staking/submit:
     $ref: ./paths/havoc/staking/submit.yaml
 
+  /havoc/voq-drop/claimable/{stake_addr}:
+    $ref: ./paths/havoc/voq-drop/claimable.yaml
+
   /havoc/voq-drop/submit:
     $ref: ./paths/havoc/voq-drop/submit.yaml
 

@@ -7592,6 +7592,59 @@
         }
       }
     },
+    "/havoc/voq-drop/claimable/{stake_addr}": {
+      "get": {
+        "tags": [
+          "Havoc » VOQ drop » Claimable"
+        ],
+        "summary": "Havoc Worlds $VOQ token initial drop claimable amount",
+        "description": "Get claimable $VOQ token amount of a staking account, from the initial airdrop",
+        "responses": {
+          "200": {
+            "description": "Return claimable $VOQ token amount of a staking account, and the number of Genus NFTs they held during the snapshot",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "claimable": {
+                      "type": "integer",
+                      "example": 10100
+                    },
+                    "drifters_held": {
+                      "type": "integer",
+                      "example": 6969
+                    }
+                  },
+                  "required": [
+                    "claimable",
+                    "drifters_held"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "418": {
+            "$ref": "#/components/responses/418"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
     "/havoc/voq-drop/submit": {
       "post": {
         "tags": [
