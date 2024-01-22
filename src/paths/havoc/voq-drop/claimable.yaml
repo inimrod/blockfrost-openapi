@@ -3,6 +3,14 @@ get:
     - Havoc » VOQ drop » Claimable
   summary: Havoc Worlds $VOQ token initial drop claimable amount
   description: Get claimable $VOQ token amount of a staking account, from the initial airdrop
+  parameters:
+    - in: path
+      name: stake_address
+      required: true
+      schema:
+        type: string
+      description: Bech32 stake address.
+      example: "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
   responses:
     "200":
       description: Return claimable $VOQ token amount of a staking account, and the number of Genus NFTs they held during the snapshot

@@ -3874,6 +3874,15 @@ export interface paths {
          * @description Get claimable $VOQ token amount of a staking account, from the initial airdrop
          */
         get: {
+            parameters: {
+                path: {
+                    /**
+                     * @description Bech32 stake address.
+                     * @example stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc
+                     */
+                    stake_address: string;
+                };
+            };
             responses: {
                 /** @description Return claimable $VOQ token amount of a staking account, and the number of Genus NFTs they held during the snapshot */
                 200: {
@@ -3907,7 +3916,9 @@ export interface paths {
                     /**
                      * @example {
                      *   'txCbor': '83a400818258208911f640d452c3be4ff3d89db63b41ce048c056951286e2e28bbf8a51588ab44000181825839009493315cd92eb5d8c4304e67b7e16ae36d61d34502694657811a2c8e32c728d3861e164cab28cb8f006448139c8f1740ffb8e7aa9e5232dc1a10b2531f021a00029519075820cb798b0bce50604eaf2e0dc89367896b18f0a6ef6b32b57e3c9f83f8ee71e608a1008182582073fea80d424276ad0978d4fe5310e8bc2d485f5f6bb3bf87612989f112ad5a7d5840c40425229749a9434763cf01b492057fd56d7091a6372eaa777a1c9b1ca508c914e6a4ee9c0d40fc10952ed668e9ad65378a28b149de6bd4204bd9f095b0a902a11907b0a1667469636b657281a266736f757263656b736f757263655f6e616d656576616c7565736675676961742076656e69616d206d696e7573',
-                     *   'inputs': '9009493315cd92eb5d8c4304e67b7e16ae36d61d34502694657811a2c8e32c728d3861e164cab28cb8f006448139c8f1740ffb8e7aa9e5232dc1a10b2531f021a00029519075820cb798b0bce50604eaf2e0dc89367896b18f0a6ef6b32b57e3c9f83f8ee71e608a1008182582073fea80d424276ad0978d4fe5310e8bc2d485f5f6bb3bf87612989f112ad5a7d5840c40425229749a9434763cf01b492057fd56d7091a6372eaa777a1c9b1ca508c914e6a4ee9c0d40fc10952ed668e9ad65378a28b149de6bd4204bd9f095b0a902a11907b0a1667469636b657281a266736f757263656b736f757263655f6e616d656576616c75'
+                     *   'inputs': [
+                     *     '9009493315cd92eb5d8c4304e67b7e16ae36d61d34502694657811a2c8e32c728d3861e164cab28cb8f006448139c8f1740ffb8e7aa9e5232dc1a10b2531f021a00029519075820cb798b0bce50604eaf2e0dc89367896b18f0a6ef6b32b57e3c9f83f8ee71e608a1008182582073fea80d424276ad0978d4fe5310e8bc2d485f5f6bb3bf87612989f112ad5a7d5840c40425229749a9434763cf01b492057fd56d7091a6372eaa777a1c9b1ca508c914e6a4ee9c0d40fc10952ed668e9ad65378a28b149de6bd4204bd9f095b0a902a11907b0a1667469636b657281a266736f757263656b736f757263655f6e616d656576616c75'
+                     *   ]
                      * }
                      */
                     "application/json": {
@@ -3922,6 +3933,84 @@ export interface paths {
                 200: {
                     content: {
                         "application/json": string;
+                    };
+                };
+                400: components["responses"]["400"];
+                403: components["responses"]["403"];
+                404: components["responses"]["404"];
+                418: components["responses"]["418"];
+                429: components["responses"]["429"];
+                500: components["responses"]["500"];
+            };
+        };
+    };
+    "/havoc/wallets/pending-verify/{sid}": {
+        /**
+         * Havoc Worlds wallet account verification requests from Discord
+         * @description Get pending verification request session initiated from Discord
+         */
+        get: {
+            parameters: {
+                path: {
+                    /**
+                     * @description Verification request session UUID
+                     * @example 7a9e7095-cf79-4b4e-bd6c-1d34935a0d34
+                     */
+                    sid: string;
+                };
+            };
+            responses: {
+                /** @description Return pending wallet verification request session initiated from Discord */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @example stake1uykkptznwz0jd3flwa442a0cdmfrpwhg8pa9ypytf4cwacqw2085c */
+                            stake_address: string;
+                            /** @example 2024-01-22T03:35:37.275Z */
+                            expiry: string;
+                        };
+                    };
+                };
+                400: components["responses"]["400"];
+                403: components["responses"]["403"];
+                404: components["responses"]["404"];
+                418: components["responses"]["418"];
+                429: components["responses"]["429"];
+                500: components["responses"]["500"];
+            };
+        };
+    };
+    "/havoc/wallets/verify": {
+        /**
+         * Submit signed wallet verification message to confirm request initiated in Discord
+         * @description Submit signed wallet verification message to confirm request initiated in Discord
+         */
+        post: {
+            /** @description The signed wallet verification message package. */
+            requestBody: {
+                content: {
+                    /**
+                     * @example {
+                     *   'walletApp': 'eternl',
+                     *   'signedData': '9009493315cd92eb5d8c4304e67b7e16ae36d61d34502694657811a2c8e32c728d3861e164cab28cb8f006448139c8f1740ffb8e7aa9e5232dc1a10b2531f021a00029519075820cb798b0bce50604eaf2e0dc89367896b18f0a6ef6b32b57e3c9f83f8ee71e608a1008182582073fea80d424276ad0978d4fe5310e8bc2d485f5f6bb3bf87612989f112ad5a7d5840c40425229749a9434763cf01b492057fd56d7091a6372eaa777a1c9b1ca508c914e6a4ee9c0d40fc10952ed668e9ad65378a28b149de6bd4204bd9f095b0a902a11907b0a1667469636b657281a266736f757263656b736f757263655f6e616d656576616c75',
+                     *   'sid': '7a9e7095-cf79-4b4e-bd6c-1d34935a0d34'
+                     * }
+                     */
+                    "application/json": {
+                        /** @description name of wallet app used */
+                        walletApp: string;
+                        /** @description serialized signed data from CIP30 wallet app */
+                        signedData: string;
+                        /** @description the verification request session ID */
+                        sid: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Returns verification status */
+                200: {
+                    content: {
+                        "application/json": boolean;
                     };
                 };
                 400: components["responses"]["400"];

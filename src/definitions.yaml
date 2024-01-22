@@ -600,6 +600,12 @@ paths:
   /havoc/voq-drop/submit:
     $ref: ./paths/havoc/voq-drop/submit.yaml
 
+  /havoc/wallets/pending-verify/{sid}:
+    $ref: ./paths/havoc/wallets/pending_verify.yaml
+
+  /havoc/wallets/verify:
+    $ref: ./paths/havoc/wallets/verify.yaml
+
 components:
   schemas:
     onchain_metadata_cip25:

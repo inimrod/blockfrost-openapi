@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Havoc » Discord Wallet Verification » Pending
+  summary: Havoc Worlds wallet account verification requests from Discord
+  description: Get pending verification request session initiated from Discord
+  parameters:
+    - in: path
+      name: sid
+      required: true
+      schema:
+        type: string
+        minLength: 36
+        maxLength: 36
+      description: Verification request session UUID
+      example: "7a9e7095-cf79-4b4e-bd6c-1d34935a0d34"
+  responses:
+    "200":
+      description: Return pending wallet verification request session initiated from Discord
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              stake_address:
+                type: string
+                example: "stake1uykkptznwz0jd3flwa442a0cdmfrpwhg8pa9ypytf4cwacqw2085c"
+              expiry:
+                type: string
+                example: '2024-01-22T03:35:37.275Z'
+            required:
+              - stake_address
+              - expiry
+    "400":
+      $ref: ../../../responses/errors/400.yaml
+    "403":
+      $ref: ../../../responses/errors/403.yaml
+    "404":
+      $ref: ../../../responses/errors/404.yaml
+    "429":
+      $ref: ../../../responses/errors/429.yaml
+    "418":
+      $ref: ../../../responses/errors/418.yaml
+    "500":
+      $ref: ../../../responses/errors/500.yaml
