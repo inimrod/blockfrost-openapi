@@ -4000,8 +4000,12 @@ export interface paths {
           "application/json": {
             /** @description name of wallet app used */
             walletApp: string;
-            /** @description serialized signed data from CIP30 wallet app */
-            signedData: string;
+            signedData: {
+              /** @description serialized signature data from CIP30 wallet app */
+              signature: string;
+              /** @description serialized key data from CIP30 wallet app */
+              key: string;
+            };
             /** @description the verification request session ID */
             sid: string;
           };

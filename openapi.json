@@ -7817,8 +7817,21 @@
                     "description": "name of wallet app used"
                   },
                   "signedData": {
-                    "type": "string",
-                    "description": "serialized signed data from CIP30 wallet app"
+                    "type": "object",
+                    "properties": {
+                      "signature": {
+                        "type": "string",
+                        "description": "serialized signature data from CIP30 wallet app"
+                      },
+                      "key": {
+                        "type": "string",
+                        "description": "serialized key data from CIP30 wallet app"
+                      }
+                    },
+                    "required": [
+                      "signature",
+                      "key"
+                    ]
                   },
                   "sid": {
                     "type": "string",
