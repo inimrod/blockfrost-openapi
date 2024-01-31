@@ -606,6 +606,9 @@ paths:
   /havoc/wallets/verify:
     $ref: ./paths/havoc/wallets/verify.yaml
 
+  /havoc/wallets/verify-hw:
+    $ref: ./paths/havoc/wallets/verify_hw.yaml
+
 components:
   schemas:
     onchain_metadata_cip25:

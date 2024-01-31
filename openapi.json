@@ -7879,6 +7879,76 @@
           }
         }
       }
+    },
+    "/havoc/wallets/verify-hw": {
+      "post": {
+        "tags": [
+          "Havoc » Discord Wallet Verification » Verify"
+        ],
+        "summary": "Submit signed wallet verification message to confirm request initiated in Discord",
+        "description": "Submit signed wallet verification message to confirm request initiated in Discord",
+        "requestBody": {
+          "description": "The hardware-wallet-signed dummy tx containing the verification message package.\n",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "walletApp": {
+                    "type": "string",
+                    "description": "name of wallet app used"
+                  },
+                  "tx": {
+                    "type": "string",
+                    "description": "the signed dummy tx"
+                  },
+                  "sid": {
+                    "type": "string",
+                    "description": "the verification request session ID"
+                  }
+                },
+                "required": [
+                  "walletApp",
+                  "signedData",
+                  "sid"
+                ]
+              },
+              "example": "{\n  'walletApp': 'eternl',\n  'tx': '84a600818258200b00cf1008aaea2b74410869fe3437f3895a016b44c9ad8691eed711a542c28100018282581d61e074157399070de42fe1fd4488c89b3b2ef1ab629a79fea0d624abaf1a000f424082581d61e074157399070de42fe1fd4488c89b3b2ef1ab629a79fea0d624abaf1a003a5b7f021a0002ad81031a06dca1f7075820b12fa0cb96751aa4f88220e24c0443f02e3d433d9081108d4f48d0f22db0f6a10e81581c03b91eb7e57f4d8a709d46ed472dc8cf781710e8bb677027e960aeeba10081825820783be5c1f6e740611b2b9ca3aa7ca340cb6ca83fbad8f0a7d8dab38ecb428637584051d983c8b35b89c2fa50d3038b0a09c5f5798fb8a48f084563106a838ebbe99be14d59123dc01fde09293423bb974aae69e66ebca99c3f4c79b00d6b2e64960af5a11902a2a1636d736781782c636f6e6669726d2036306466616334312d353764302d343236392d393364332d303331396436343533663264',\n  'sid': '7a9e7095-cf79-4b4e-bd6c-1d34935a0d34'\n}\n"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns verification status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "418": {
+            "$ref": "#/components/responses/418"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
     }
   },
   "components": {
