@@ -3830,6 +3830,40 @@ export interface paths {
             };
         };
     };
+    "/havoc/staking/stake-list/{epoch}": {
+        /**
+         * List of all accounts currently staking Havoc Worlds tokens and the tokens staked by each
+         * @description List of all accounts currently staking Havoc Worlds tokens and the tokens staked by each
+         */
+        get: {
+            parameters: {
+                path: {
+                    /**
+                     * @description Epoch number
+                     * @example 463
+                     */
+                    epoch: number;
+                };
+            };
+            responses: {
+                /** @description Return list of all accounts currently staking Havoc Worlds tokens and the tokens staked by each */
+                200: {
+                    content: {
+                        "application/json": {
+                            stake_addr: string;
+                            assets: string[];
+                        }[];
+                    };
+                };
+                400: components["responses"]["400"];
+                403: components["responses"]["403"];
+                404: components["responses"]["404"];
+                418: components["responses"]["418"];
+                429: components["responses"]["429"];
+                500: components["responses"]["500"];
+            };
+        };
+    };
     "/havoc/staking/submit": {
         /**
          * Submit Havoc Worlds staking and unstaking txs

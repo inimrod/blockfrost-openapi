@@ -591,6 +591,9 @@ paths:
   /havoc/staking/{asset}/utxo:
     $ref: ./paths/havoc/staking/token_utxo.yaml
 
+  /havoc/staking/stake-list/{epoch}:
+    $ref: ./paths/havoc/staking/stake_list.yaml
+
   /havoc/staking/submit:
     $ref: ./paths/havoc/staking/submit.yaml
 

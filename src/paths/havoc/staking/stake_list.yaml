@@ -1,0 +1,47 @@
+get:
+  tags:
+    - Havoc » Staking » Stake List
+  summary: List of all accounts currently staking Havoc Worlds tokens and the tokens staked by each
+  description: List of all accounts currently staking Havoc Worlds tokens and the tokens staked by each
+  parameters:
+    - in: path
+      name: epoch
+      required: true
+      schema:
+        type: number
+      description: Epoch number
+      example: 463
+  responses:
+    "200":
+      description: Return list of all accounts currently staking Havoc Worlds tokens and the tokens staked by each
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                stake_addr:
+                  type: string
+                assets:
+                  type: array
+                  items:
+                    type: string
+                    description: Asset ID's of the staked assets
+                    example: '1088b361c41f49906645cedeeb7a9ef0e0b793b1a2d24f623ea748764861766f63576f726c647330303137'
+              required:
+                - stake_addr
+                - assets
+
+    "400":
+      $ref: ../../../responses/errors/400.yaml
+    "403":
+      $ref: ../../../responses/errors/403.yaml
+    "404":
+      $ref: ../../../responses/errors/404.yaml
+    "429":
+      $ref: ../../../responses/errors/429.yaml
+    "418":
+      $ref: ../../../responses/errors/418.yaml
+    "500":
+      $ref: ../../../responses/errors/500.yaml
