@@ -612,6 +612,9 @@ paths:
   /havoc/wallets/verify-hw:
     $ref: ./paths/havoc/wallets/verify_hw.yaml
 
+  /dtknzr/metadata/{asset}:
+    $ref: ./paths/dtknzr/metadata.yaml
+
 components:
   schemas:
     onchain_metadata_cip25:
