@@ -7121,6 +7121,8 @@ export interface components {
       ref_script_cbor: string | null;
     };
     asset_metadata: {
+      /** @description The name of the asset if supplied in its metadata */
+      name: string | null;
       /** @description Can be either a URL to an image file or a base64 image data */
       image: string | null;
       /** @example RNR */

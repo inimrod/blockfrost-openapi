@@ -12594,6 +12594,11 @@
       "asset_metadata": {
         "type": "object",
         "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the asset if supplied in its metadata",
+            "nullable": true
+          },
           "image": {
             "type": "string",
             "description": "Can be either a URL to an image file or a base64 image data",
@@ -12614,6 +12619,7 @@
           }
         },
         "required": [
+          "name",
           "image",
           "ticker",
           "description",
