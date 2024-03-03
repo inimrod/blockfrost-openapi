@@ -615,6 +615,9 @@ paths:
   /dtknzr/metadata/{asset}:
     $ref: ./paths/dtknzr/metadata.yaml
 
+  /dtknzr/tx:
+    $ref: ./paths/dtknzr/tx.yaml
+
 components:
   schemas:
     onchain_metadata_cip25:
