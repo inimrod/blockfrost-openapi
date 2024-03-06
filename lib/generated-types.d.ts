@@ -4133,6 +4133,76 @@ export interface paths {
             };
         };
     };
+    "/dtknzr/user/{stake_addr}": {
+        /**
+         * User account info
+         * @description Information about a specific user identified by stake address
+         */
+        get: {
+            parameters: {
+                path: {
+                    /**
+                     * @description Bech32 stake address.
+                     * @example stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc
+                     */
+                    stake_address: string;
+                };
+            };
+            responses: {
+                /** @description Return the account content. */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Query status */
+                            success: boolean;
+                            /**
+                             * @description Bech32 stake address
+                             * @example stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7
+                             */
+                            stake_address: string;
+                            /**
+                             * @description User acct id in our own db
+                             * @example 123
+                             */
+                            id_in_db?: string;
+                            /**
+                             * @description User acct id of the referrer, in our own db
+                             * @example 123
+                             */
+                            referrer?: string;
+                            /**
+                             * @description Registration state of an account
+                             * @example true
+                             */
+                            active?: boolean;
+                            is_phrck_delegator?: boolean;
+                            /**
+                             * @description Balance of the account in Lovelaces
+                             * @example 619154618165
+                             */
+                            controlled_amount?: string;
+                            /**
+                             * @description Bech32 pool ID that owns the account
+                             * @example pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy
+                             */
+                            pool_id?: string | null;
+                            /**
+                             * @description Referral discount applicable on first tx
+                             * @example 0.1
+                             */
+                            referral_disc?: number;
+                        };
+                    };
+                };
+                400: components["responses"]["400"];
+                403: components["responses"]["403"];
+                404: components["responses"]["404"];
+                418: components["responses"]["418"];
+                429: components["responses"]["429"];
+                500: components["responses"]["500"];
+            };
+        };
+    };
     "/dtknzr/tx": {
         /**
          * Submit Detokenizer txs

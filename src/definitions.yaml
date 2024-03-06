@@ -615,6 +615,9 @@ paths:
   /dtknzr/metadata/{asset}:
     $ref: ./paths/dtknzr/metadata.yaml
 
+  /dtknzr/user/{stake_addr}:
+    $ref: ./paths/dtknzr/user.yaml
+
   /dtknzr/tx:
     $ref: ./paths/dtknzr/tx.yaml
 
