@@ -8089,6 +8089,15 @@
             },
             "description": "Bech32 stake address.",
             "example": "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
+          },
+          {
+            "in": "query",
+            "name": "rid",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "User ID of the referrer of the user"
           }
         ],
         "responses": {

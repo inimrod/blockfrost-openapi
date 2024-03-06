@@ -4140,6 +4140,10 @@ export interface paths {
          */
         get: {
             parameters: {
+                query?: {
+                    /** @description User ID of the referrer of the user */
+                    rid?: string;
+                };
                 path: {
                     /**
                      * @description Bech32 stake address.
