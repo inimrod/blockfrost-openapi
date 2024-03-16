@@ -6027,6 +6027,77 @@ paths:
           $ref: '#/components/responses/429'
         '500':
           $ref: '#/components/responses/500'
+  /dtknzr/referrer/{stake_addr}:
+    get:
+      tags:
+        - Detokenizer » Referrer
+      summary: Referrer account details
+      description: Referral commissions history for a specific referrer identified by stake address
+      parameters:
+        - in: path
+          name: stake_address
+          required: true
+          schema:
+            type: string
+          description: Bech32 stake address.
+          example: stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc
+      responses:
+        '200':
+          description: Return the referrer account content.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  available:
+                    type: string
+                    example: '123'
+                    description: The accumulated commissions of the user available for withdrawal
+                  txs:
+                    type: array
+                    items:
+                      type: object
+                      description: History of commissionable transactions
+                      properties:
+                        tx_hash:
+                          type: string
+                          example: 117882113a0fe12e89847badc636f19e18056525ad51b99741b7efc97d3aaf74
+                        timestamp:
+                          type: string
+                          example: '2024-03-07 11:49:31.282+00'
+                        fee:
+                          type: string
+                          example: '179232'
+                        comm:
+                          type: string
+                          example: '89616'
+                        rate:
+                          type: number
+                          example: 0.5
+                        drawn:
+                          type: boolean
+                      required:
+                        - tx_hash
+                        - timestamp
+                        - fee
+                        - comm
+                        - rate
+                        - drawn
+                required:
+                  - available
+                  - txs
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '418':
+          $ref: '#/components/responses/418'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
 components:
   schemas:
     onchain_metadata_cip25:

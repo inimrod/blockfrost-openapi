@@ -620,6 +620,9 @@ paths:
 
   /dtknzr/tx:
     $ref: ./paths/dtknzr/tx.yaml
+  
+  /dtknzr/referrer/{stake_addr}:
+    $ref: ./paths/dtknzr/referrer.yaml
 
 components:
   schemas:

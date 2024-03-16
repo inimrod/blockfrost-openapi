@@ -4245,6 +4245,56 @@ export interface paths {
             };
         };
     };
+    "/dtknzr/referrer/{stake_addr}": {
+        /**
+         * Referrer account details
+         * @description Referral commissions history for a specific referrer identified by stake address
+         */
+        get: {
+            parameters: {
+                path: {
+                    /**
+                     * @description Bech32 stake address.
+                     * @example stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc
+                     */
+                    stake_address: string;
+                };
+            };
+            responses: {
+                /** @description Return the referrer account content. */
+                200: {
+                    content: {
+                        "application/json": {
+                            /**
+                             * @description The accumulated commissions of the user available for withdrawal
+                             * @example 123
+                             */
+                            available: string;
+                            txs: {
+                                /** @example 117882113a0fe12e89847badc636f19e18056525ad51b99741b7efc97d3aaf74 */
+                                tx_hash: string;
+                                /** @example 2024-03-07 11:49:31.282+00 */
+                                timestamp: string;
+                                /** @example 179232 */
+                                fee: string;
+                                /** @example 89616 */
+                                comm: string;
+                                /** @example 0.5 */
+                                rate: number;
+                                drawn: boolean;
+                            }[];
+                        };
+                    };
+                };
+                400: components["responses"]["400"];
+                403: components["responses"]["403"];
+                404: components["responses"]["404"];
+                418: components["responses"]["418"];
+                429: components["responses"]["429"];
+                500: components["responses"]["500"];
+            };
+        };
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
