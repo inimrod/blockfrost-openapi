@@ -8302,18 +8302,23 @@
                           },
                           "fee": {
                             "type": "string",
-                            "example": "179232"
+                            "example": "179232",
+                            "nullable": true
                           },
                           "comm": {
                             "type": "string",
-                            "example": "89616"
+                            "example": "89616",
+                            "nullable": true
                           },
                           "rate": {
                             "type": "number",
-                            "example": 0.5
+                            "example": 0.5,
+                            "nullable": true
                           },
                           "drawn": {
-                            "type": "boolean"
+                            "type": "string",
+                            "example": "2179232",
+                            "nullable": true
                           }
                         },
                         "required": [

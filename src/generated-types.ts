@@ -4271,19 +4271,20 @@ export interface paths {
                * @example 123
                */
               available: string;
-              txs: {
+              txs: ({
                   /** @example 117882113a0fe12e89847badc636f19e18056525ad51b99741b7efc97d3aaf74 */
                   tx_hash: string;
                   /** @example 2024-03-07 11:49:31.282+00 */
                   timestamp: string;
                   /** @example 179232 */
-                  fee: string;
+                  fee: string | null;
                   /** @example 89616 */
-                  comm: string;
+                  comm: string | null;
                   /** @example 0.5 */
-                  rate: number;
-                  drawn: boolean;
-                }[];
+                  rate: number | null;
+                  /** @example 2179232 */
+                  drawn: string | null;
+                })[];
             };
           };
         };
