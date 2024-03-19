@@ -618,8 +618,8 @@ paths:
   /dtknzr/user/{stake_addr}:
     $ref: ./paths/dtknzr/user.yaml
 
-  /dtknzr/tx:
-    $ref: ./paths/dtknzr/tx.yaml
+  /dtknzr/detokenize:
+    $ref: ./paths/dtknzr/detokenize.yaml
   
   /dtknzr/referrer/{stake_addr}:
     $ref: ./paths/dtknzr/referrer.yaml

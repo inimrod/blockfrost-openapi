@@ -4207,7 +4207,7 @@ export interface paths {
             };
         };
     };
-    "/dtknzr/tx": {
+    "/dtknzr/detokenize": {
         /**
          * Submit Detokenizer txs
          * @description Submit Detokenizer txs

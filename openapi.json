@@ -8181,10 +8181,10 @@
         }
       }
     },
-    "/dtknzr/tx": {
+    "/dtknzr/detokenize": {
       "post": {
         "tags": [
-          "Detokenizer » Tx"
+          "Detokenizer » Detokenize"
         ],
         "summary": "Submit Detokenizer txs",
         "description": "Submit Detokenizer txs",
