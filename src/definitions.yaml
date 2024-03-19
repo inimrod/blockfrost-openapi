@@ -624,6 +624,9 @@ paths:
   /dtknzr/referrer/{stake_addr}:
     $ref: ./paths/dtknzr/referrer.yaml
 
+  /dtknzr/withdraw:
+    $ref: ./paths/dtknzr/withdraw.yaml
+
 components:
   schemas:
     onchain_metadata_cip25:
