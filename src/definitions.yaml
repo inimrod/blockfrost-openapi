@@ -612,6 +612,9 @@ paths:
   /havoc/wallets/verify-hw:
     $ref: ./paths/havoc/wallets/verify_hw.yaml
 
+  /havoc/s2/mint:
+    $ref: ./paths/havoc/s2/mint.yaml
+
   /dtknzr/metadata/{asset}:
     $ref: ./paths/dtknzr/metadata.yaml
 
