@@ -1,0 +1,24 @@
+get:
+  tags:
+    - Havoc » S2 » Available
+  summary: Havoc Worlds Season 2 available NFTs
+  description: Current count of available season 2 NFTs for minting
+  responses:
+    "200":
+      description: Return current count of available season 2 NFTs for minting
+      content:
+        application/json:
+          schema:
+            type: number
+    "400":
+      $ref: ../../../responses/errors/400.yaml
+    "403":
+      $ref: ../../../responses/errors/403.yaml
+    "404":
+      $ref: ../../../responses/errors/404.yaml
+    "429":
+      $ref: ../../../responses/errors/429.yaml
+    "418":
+      $ref: ../../../responses/errors/418.yaml
+    "500":
+      $ref: ../../../responses/errors/500.yaml

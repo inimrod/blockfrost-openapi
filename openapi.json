@@ -8094,6 +8094,45 @@
         }
       }
     },
+    "/havoc/s2/available": {
+      "get": {
+        "tags": [
+          "Havoc » S2 » Available"
+        ],
+        "summary": "Havoc Worlds Season 2 available NFTs",
+        "description": "Current count of available season 2 NFTs for minting",
+        "responses": {
+          "200": {
+            "description": "Return current count of available season 2 NFTs for minting",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "418": {
+            "$ref": "#/components/responses/418"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
     "/dtknzr/metadata/{asset}": {
       "get": {
         "tags": [

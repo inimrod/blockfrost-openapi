@@ -615,6 +615,9 @@ paths:
   /havoc/s2/mint:
     $ref: ./paths/havoc/s2/mint.yaml
 
+  /havoc/s2/available:
+    $ref: ./paths/havoc/s2/available.yaml
+
   /dtknzr/metadata/{asset}:
     $ref: ./paths/dtknzr/metadata.yaml
 

@@ -4140,6 +4140,28 @@ export interface paths {
             };
         };
     };
+    "/havoc/s2/available": {
+        /**
+         * Havoc Worlds Season 2 available NFTs
+         * @description Current count of available season 2 NFTs for minting
+         */
+        get: {
+            responses: {
+                /** @description Return current count of available season 2 NFTs for minting */
+                200: {
+                    content: {
+                        "application/json": number;
+                    };
+                };
+                400: components["responses"]["400"];
+                403: components["responses"]["403"];
+                404: components["responses"]["404"];
+                418: components["responses"]["418"];
+                429: components["responses"]["429"];
+                500: components["responses"]["500"];
+            };
+        };
+    };
     "/dtknzr/metadata/{asset}": {
         /**
          * Metadata of specific asset
