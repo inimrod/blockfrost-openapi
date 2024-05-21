@@ -4162,6 +4162,28 @@ export interface paths {
             };
         };
     };
+    "/havoc/s2/image/{fname}": {
+        /**
+         * Havoc Worlds Season 2 NFT image
+         * @description Image of a season 2 NFT
+         */
+        get: {
+            responses: {
+                /** @description Return the image file of a season 2 NFT */
+                200: {
+                    content: {
+                        "application/json": string;
+                    };
+                };
+                400: components["responses"]["400"];
+                403: components["responses"]["403"];
+                404: components["responses"]["404"];
+                418: components["responses"]["418"];
+                429: components["responses"]["429"];
+                500: components["responses"]["500"];
+            };
+        };
+    };
     "/dtknzr/metadata/{asset}": {
         /**
          * Metadata of specific asset

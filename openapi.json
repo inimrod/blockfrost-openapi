@@ -8133,6 +8133,46 @@
         }
       }
     },
+    "/havoc/s2/image/{fname}": {
+      "get": {
+        "tags": [
+          "Havoc » S2 » Image"
+        ],
+        "summary": "Havoc Worlds Season 2 NFT image",
+        "description": "Image of a season 2 NFT",
+        "responses": {
+          "200": {
+            "description": "Return the image file of a season 2 NFT",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Can be either a URL to an image file or a base64 image data"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "418": {
+            "$ref": "#/components/responses/418"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
     "/dtknzr/metadata/{asset}": {
       "get": {
         "tags": [

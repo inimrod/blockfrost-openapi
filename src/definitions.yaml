@@ -618,6 +618,9 @@ paths:
   /havoc/s2/available:
     $ref: ./paths/havoc/s2/available.yaml
 
+  /havoc/s2/image/{fname}:
+    $ref: ./paths/havoc/s2/image.yaml
+
   /dtknzr/metadata/{asset}:
     $ref: ./paths/dtknzr/metadata.yaml
 

@@ -1,0 +1,25 @@
+get:
+  tags:
+    - Havoc » S2 » Image
+  summary: Havoc Worlds Season 2 NFT image
+  description: Image of a season 2 NFT
+  responses:
+    "200":
+      description: Return the image file of a season 2 NFT
+      content:
+        application/json:
+          schema:
+            type: string
+            description: Can be either a URL to an image file or a base64 image data
+    "400":
+      $ref: ../../../responses/errors/400.yaml
+    "403":
+      $ref: ../../../responses/errors/403.yaml
+    "404":
+      $ref: ../../../responses/errors/404.yaml
+    "429":
+      $ref: ../../../responses/errors/429.yaml
+    "418":
+      $ref: ../../../responses/errors/418.yaml
+    "500":
+      $ref: ../../../responses/errors/500.yaml
