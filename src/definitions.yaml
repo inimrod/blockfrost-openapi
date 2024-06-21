@@ -636,6 +636,12 @@ paths:
   /dtknzr/withdraw:
     $ref: ./paths/dtknzr/withdraw.yaml
 
+  
+  /quorina/session/{stake_addr}:
+    $ref: ./paths/quorina/session.yaml
+  /quorina/authenticate:
+    $ref: ./paths/quorina/authenticate.yaml
+
 components:
   schemas:
     onchain_metadata_cip25:

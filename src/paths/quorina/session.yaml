@@ -1,0 +1,42 @@
+get:
+  tags:
+    - Quorina » Session
+  summary: Get a new session ID from backend
+  description: Get a new session ID to initiate a user session on Quorina
+  parameters:
+    - in: path
+      name: stake_address
+      required: true
+      schema:
+        type: string
+      description: Bech32 stake address.
+      example: "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
+  responses:
+    "200":
+      description: Return a new set of session data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              acct: 
+                type: string
+                description: The same bech32 stake address submitted
+              id:
+                type: string
+                description: Unique id for the initiated session (uuidv4)
+              timeStamp:
+                type: string
+                description: Datetime ISO string
+    "400":
+      $ref: ../../responses/errors/400.yaml
+    "403":
+      $ref: ../../responses/errors/403.yaml
+    "404":
+      $ref: ../../responses/errors/404.yaml
+    "429":
+      $ref: ../../responses/errors/429.yaml
+    "418":
+      $ref: ../../responses/errors/418.yaml
+    "500":
+      $ref: ../../responses/errors/500.yaml

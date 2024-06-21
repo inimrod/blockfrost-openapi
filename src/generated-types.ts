@@ -4417,6 +4417,106 @@ export interface paths {
       };
     };
   };
+  "/quorina/session/{stake_addr}": {
+    /**
+     * Get a new session ID from backend
+     * @description Get a new session ID to initiate a user session on Quorina
+     */
+    get: {
+      parameters: {
+        path: {
+          /**
+           * @description Bech32 stake address.
+           * @example stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc
+           */
+          stake_address: string;
+        };
+      };
+      responses: {
+        /** @description Return a new set of session data */
+        200: {
+          content: {
+            "application/json": {
+              /** @description The same bech32 stake address submitted */
+              acct?: string;
+              /** @description Unique id for the initiated session (uuidv4) */
+              id?: string;
+              /** @description Datetime ISO string */
+              timeStamp?: string;
+            };
+          };
+        };
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
+  "/quorina/authenticate": {
+    /**
+     * Authenticate user-submited signedData
+     * @description Verify user login using CIP30 wallet signed data
+     */
+    post: {
+      /** @description The signed wallet verification message package. */
+      requestBody: {
+        content: {
+          /**
+           * @example {
+           *   'walletApp': 'eternl',
+           *   'signedData': '9009493315cd92eb5d8c4304e67b7e16ae36d61d34502694657811a2c8e32c728d3861e164cab28cb8f006448139c8f1740ffb8e7aa9e5232dc1a10b2531f021a00029519075820cb798b0bce50604eaf2e0dc89367896b18f0a6ef6b32b57e3c9f83f8ee71e608a1008182582073fea80d424276ad0978d4fe5310e8bc2d485f5f6bb3bf87612989f112ad5a7d5840c40425229749a9434763cf01b492057fd56d7091a6372eaa777a1c9b1ca508c914e6a4ee9c0d40fc10952ed668e9ad65378a28b149de6bd4204bd9f095b0a902a11907b0a1667469636b657281a266736f757263656b736f757263655f6e616d656576616c75',
+           *   'sid': '7a9e7095-cf79-4b4e-bd6c-1d34935a0d34'
+           * }
+           */
+          "application/json": {
+            /** @description name of wallet app used */
+            walletApp: string;
+            signedData: {
+              /** @description serialized signature data from CIP30 wallet app */
+              signature: string;
+              /** @description serialized key data from CIP30 wallet app */
+              key: string;
+            };
+            /** @description the initiated session ID */
+            sid: string;
+          };
+        };
+      };
+      responses: {
+        /** @description Returns authenticated session data package, containing a signed JWT token */
+        200: {
+          content: {
+            "application/json": {
+              /**
+               * @description Server-signed JWT token
+               * @example eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+               */
+              jwToken: string;
+              user: {
+                /** @description Staking acct ID in internal DB */
+                acct_id: string;
+                /** @description Bech32 stake address */
+                bech32: string;
+                /** @description Remaining usage credits for the account */
+                credits: string;
+                /** @description The last epoch this account's usage credits were replenished */
+                last_epoch_topup: string;
+              };
+            };
+          };
+        };
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
 }
 
 export type webhooks = Record<string, never>;
