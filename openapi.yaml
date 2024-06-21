@@ -6399,6 +6399,63 @@ paths:
           $ref: '#/components/responses/429'
         '500':
           $ref: '#/components/responses/500'
+  /quorina/verify-jwt:
+    post:
+      tags:
+        - Quorina » Verify JWT
+      summary: Verify validity of a given JWT token
+      description: Check if a given JWT token is valid. Re-issues a fresh one if remaining validity is less than 4 hours.
+      requestBody:
+        description: |
+          The JWT token to be verified
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jwToken:
+                  description: The JWT token to be verified
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+              required:
+                - jwToken
+            example: |
+              {
+                'jwToken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+              }
+      responses:
+        '200':
+          description: Returns the result of JWT token verification
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                  refreshed:
+                    type: boolean
+                  expired:
+                    type: boolean
+                    nullable: true
+                  newJwt:
+                    type: string
+                    nullable: true
+                required:
+                  - valid
+                  - refreshed
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '418':
+          $ref: '#/components/responses/418'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
 components:
   schemas:
     onchain_metadata_cip25:

@@ -4517,6 +4517,50 @@ export interface paths {
       };
     };
   };
+  "/quorina/verify-jwt": {
+    /**
+     * Verify validity of a given JWT token
+     * @description Check if a given JWT token is valid. Re-issues a fresh one if remaining validity is less than 4 hours.
+     */
+    post: {
+      /** @description The JWT token to be verified */
+      requestBody: {
+        content: {
+          /**
+           * @example {
+           *   'jwToken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+           * }
+           */
+          "application/json": {
+            /**
+             * @description The JWT token to be verified
+             * @example eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+             */
+            jwToken: unknown;
+          };
+        };
+      };
+      responses: {
+        /** @description Returns the result of JWT token verification */
+        200: {
+          content: {
+            "application/json": {
+              valid: boolean;
+              refreshed: boolean;
+              expired?: boolean | null;
+              newJwt?: string | null;
+            };
+          };
+        };
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
 }
 
 export type webhooks = Record<string, never>;
