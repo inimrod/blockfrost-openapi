@@ -4607,7 +4607,27 @@ export interface paths {
               credits: string;
               /** @description String-casted integer representing the last epoch when user's credits have been topped up */
               last_epoch_topup?: string | null;
-              results: (components["schemas"]["item_tts"] | components["schemas"]["item_image"])[];
+              results: OneOf<[{
+                  /** @description The generation request ID */
+                  id: string;
+                  /** @description The text prompt that was turned into image */
+                  prompt: string;
+                  /** @description Filename of the generated image */
+                  image: string;
+                  /** @description Datetime ISO string */
+                  timestamp: string;
+                }, {
+                  /** @description The generation request ID */
+                  id: string;
+                  /** @description The text prompt that was turned into speech */
+                  prompt: string;
+                  /** @description The voice option selected */
+                  voice: string;
+                  /** @description Filename of the generated audio */
+                  audio: string;
+                  /** @description Datetime ISO string */
+                  timestamp: string;
+                }]>[];
             };
           };
         };
@@ -7615,28 +7635,6 @@ export interface components {
       ticker: string | null;
       description: string | null;
       decimals: number | null;
-    };
-    item_tts: {
-      /** @description The generation request ID */
-      id: string;
-      /** @description The text prompt that was turned into speech */
-      prompt: string;
-      /** @description The voice option selected */
-      voice: string;
-      /** @description Filename of the generated audio */
-      audio: string;
-      /** @description Datetime ISO string */
-      timestamp: string;
-    };
-    item_image: {
-      /** @description The generation request ID */
-      id: string;
-      /** @description The text prompt that was turned into image */
-      prompt: string;
-      /** @description Filename of the generated image */
-      image: string;
-      /** @description Datetime ISO string */
-      timestamp: string;
     };
     /**
      * @description On-chain metadata stored in the minting transaction under label 721,

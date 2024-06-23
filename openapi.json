@@ -8935,10 +8935,63 @@
                       "items": {
                         "oneOf": [
                           {
-                            "$ref": "#/components/schemas/item_tts"
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The generation request ID"
+                              },
+                              "prompt": {
+                                "type": "string",
+                                "description": "The text prompt that was turned into image"
+                              },
+                              "image": {
+                                "type": "string",
+                                "description": "Filename of the generated image"
+                              },
+                              "timestamp": {
+                                "type": "string",
+                                "description": "Datetime ISO string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "prompt",
+                              "image",
+                              "timestamp"
+                            ]
                           },
                           {
-                            "$ref": "#/components/schemas/item_image"
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The generation request ID"
+                              },
+                              "prompt": {
+                                "type": "string",
+                                "description": "The text prompt that was turned into speech"
+                              },
+                              "voice": {
+                                "type": "string",
+                                "description": "The voice option selected"
+                              },
+                              "audio": {
+                                "type": "string",
+                                "description": "Filename of the generated audio"
+                              },
+                              "timestamp": {
+                                "type": "string",
+                                "description": "Datetime ISO string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "prompt",
+                              "voice",
+                              "audio",
+                              "timestamp"
+                            ]
                           }
                         ]
                       }
@@ -13525,65 +13578,6 @@
           "ticker",
           "description",
           "decimals"
-        ]
-      },
-      "item_tts": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The generation request ID"
-          },
-          "prompt": {
-            "type": "string",
-            "description": "The text prompt that was turned into speech"
-          },
-          "voice": {
-            "type": "string",
-            "description": "The voice option selected"
-          },
-          "audio": {
-            "type": "string",
-            "description": "Filename of the generated audio"
-          },
-          "timestamp": {
-            "type": "string",
-            "description": "Datetime ISO string"
-          }
-        },
-        "required": [
-          "id",
-          "prompt",
-          "voice",
-          "audio",
-          "timestamp"
-        ]
-      },
-      "item_image": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The generation request ID"
-          },
-          "prompt": {
-            "type": "string",
-            "description": "The text prompt that was turned into image"
-          },
-          "image": {
-            "type": "string",
-            "description": "Filename of the generated image"
-          },
-          "timestamp": {
-            "type": "string",
-            "description": "Datetime ISO string"
-          }
-        },
-        "required": [
-          "id",
-          "prompt",
-          "image",
-          "timestamp"
         ]
       },
       "asset_onchain_metadata_cip25": {

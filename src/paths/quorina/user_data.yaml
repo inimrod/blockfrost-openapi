@@ -64,8 +64,48 @@ post:
                 type: array
                 items: 
                   oneOf:
-                    - $ref: ../../schemas/quorina/item_tts.yaml
-                    - $ref: ../../schemas/quorina/item_image.yaml
+                    - type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The generation request ID
+                        prompt:
+                          type: string
+                          description: The text prompt that was turned into image
+                        image:
+                          type: string
+                          description: Filename of the generated image
+                        timestamp:
+                          type: string
+                          description: Datetime ISO string
+                      required:
+                        - id
+                        - prompt
+                        - image
+                        - timestamp                    
+                    - type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The generation request ID
+                        prompt:
+                          type: string
+                          description: The text prompt that was turned into speech
+                        voice:
+                          type: string
+                          description: The voice option selected
+                        audio:
+                          type: string
+                          description: Filename of the generated audio
+                        timestamp:
+                          type: string
+                          description: Datetime ISO string
+                      required:
+                        - id
+                        - prompt
+                        - voice
+                        - audio
+                        - timestamp
             required:
               - credits
               - results
