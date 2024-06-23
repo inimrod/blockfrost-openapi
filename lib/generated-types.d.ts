@@ -4642,6 +4642,70 @@ export interface paths {
             };
         };
     };
+    "/quorina/gen-speech": {
+        /**
+         * Generate spoken audio from a given text prompt.
+         * @description Generate spoken audio from a given text prompt.
+         */
+        post: {
+            parameters: {
+                header: {
+                    "Content-Type": "application/json";
+                    JWT: string;
+                };
+            };
+            /** @description The request payload containing the user's stake address and the text prompt */
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Bech32 stake address */
+                        acct: string;
+                        /** @description App route where the request was made from */
+                        prompt: string;
+                        /**
+                         * @description The selected voice option
+                         * @enum {string}
+                         */
+                        voice: "alloy" | "echo" | "fable" | "onyx" | "nova" | "shimmer";
+                    };
+                };
+            };
+            responses: {
+                /** @description Returns generation result */
+                200: {
+                    content: {
+                        "application/json": {
+                            /**
+                             * @description New server-signed JWT token, if re-issued
+                             * @example eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                             */
+                            newJwt?: string | null;
+                            /** @description String-casted integer representing the user's remaining usage credits */
+                            credits: string;
+                            result: {
+                                /** @description The generation request ID */
+                                id: string;
+                                /** @description The text prompt that was turned into speech */
+                                prompt: string;
+                                /** @description The voice option selected */
+                                voice: string;
+                                /** @description Filename of the generated audio */
+                                audio: string;
+                                /** @description Datetime ISO string */
+                                timestamp: string;
+                            };
+                        };
+                    };
+                };
+                400: components["responses"]["400"];
+                403: components["responses"]["403"];
+                404: components["responses"]["404"];
+                418: components["responses"]["418"];
+                429: components["responses"]["429"];
+                500: components["responses"]["500"];
+            };
+        };
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {

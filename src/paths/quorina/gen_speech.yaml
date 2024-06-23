@@ -1,0 +1,102 @@
+post:
+  tags:
+    - Quorina » Generate Speech
+  summary: Generate spoken audio from a given text prompt.
+  description: Generate spoken audio from a given text prompt.
+  requestBody:
+    description: |
+      The request payload containing the user's stake address and the text prompt
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            acct:
+              type: string
+              description: Bech32 stake address
+            prompt:
+              type: string
+              description: App route where the request was made from
+            voice:
+              type: string
+              description: The selected voice option
+              enum:
+                - alloy
+                - echo
+                - fable
+                - onyx
+                - nova
+                - shimmer
+          required:
+            - acct
+            - prompt
+            - voice
+  parameters:
+    - in: header
+      name: Content-Type
+      required: true
+      schema:
+        type: string
+        enum:
+          - application/json
+    - in: header
+      name: JWT
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Returns generation result
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              newJwt:
+                type: string
+                description: New server-signed JWT token, if re-issued
+                example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                nullable: true
+              credits:
+                type: string
+                description: String-casted integer representing the user's remaining usage credits
+              result:                
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The generation request ID
+                  prompt:
+                    type: string
+                    description: The text prompt that was turned into speech
+                  voice:
+                    type: string
+                    description: The voice option selected
+                  audio:
+                    type: string
+                    description: Filename of the generated audio
+                  timestamp:
+                    type: string
+                    description: Datetime ISO string
+                required:
+                  - id
+                  - prompt
+                  - voice
+                  - audio
+                  - timestamp
+            required:
+              - credits
+              - result
+    "400":
+      $ref: ../../responses/errors/400.yaml
+    "403":
+      $ref: ../../responses/errors/403.yaml
+    "404":
+      $ref: ../../responses/errors/404.yaml
+    "429":
+      $ref: ../../responses/errors/429.yaml
+    "418":
+      $ref: ../../responses/errors/418.yaml
+    "500":
+      $ref: ../../responses/errors/500.yaml

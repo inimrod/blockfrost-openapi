@@ -645,6 +645,8 @@ paths:
     $ref: ./paths/quorina/verify_jwt.yaml
   /quorina/user-data:
     $ref: ./paths/quorina/user_data.yaml
+  /quorina/gen-speech:
+    $ref: ./paths/quorina/gen_speech.yaml
 
 components:
   schemas:
