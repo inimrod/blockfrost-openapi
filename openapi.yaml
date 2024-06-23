@@ -6456,6 +6456,90 @@ paths:
           $ref: '#/components/responses/429'
         '500':
           $ref: '#/components/responses/500'
+  /quorina/user-data:
+    post:
+      tags:
+        - Quorina » User Data
+      summary: Get data of given user
+      description: Get data of given user identified by stake address, including user credits and generation history under the given tool.
+      requestBody:
+        description: |
+          The request payload containing the user's stake address and the page route (tool being used)
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                acct:
+                  type: string
+                  description: Bech32 stake address
+                route:
+                  type: string
+                  description: App route where the request was made from
+                  example: /gen-speech/
+              required:
+                - acct
+                - route
+            example: |
+              {
+                'acct': 'stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc',
+                'route': '/gen-speech/'
+              }
+      parameters:
+        - in: header
+          name: Content-Type
+          required: true
+          schema:
+            type: string
+            enum:
+              - application/json
+        - in: header
+          name: JWT
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns user data containing credits and generation history under the given tool/route
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  newJwt:
+                    type: string
+                    description: New server-signed JWT token, if re-issued
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                    nullable: true
+                  credits:
+                    type: string
+                    description: String-casted integer representing the user's remaining usage credits
+                  last_epoch_topup:
+                    type: string
+                    description: String-casted integer representing the last epoch when user's credits have been topped up
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      oneOf:
+                        - $ref: '#/components/schemas/item_tts'
+                        - $ref: '#/components/schemas/item_image'
+                required:
+                  - credits
+                  - results
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '418':
+          $ref: '#/components/responses/418'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
 components:
   schemas:
     onchain_metadata_cip25:
@@ -9786,6 +9870,50 @@ components:
         - ticker
         - description
         - decimals
+    item_tts:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The generation request ID
+        prompt:
+          type: string
+          description: The text prompt that was turned into speech
+        voice:
+          type: string
+          description: The voice option selected
+        audio:
+          type: string
+          description: Filename of the generated audio
+        timestamp:
+          type: string
+          description: Datetime ISO string
+      required:
+        - id
+        - prompt
+        - voice
+        - audio
+        - timestamp
+    item_image:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The generation request ID
+        prompt:
+          type: string
+          description: The text prompt that was turned into image
+        image:
+          type: string
+          description: Filename of the generated image
+        timestamp:
+          type: string
+          description: Datetime ISO string
+      required:
+        - id
+        - prompt
+        - image
+        - timestamp
     asset_onchain_metadata_cip25:
       type: object
       additionalProperties: true

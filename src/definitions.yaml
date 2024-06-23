@@ -643,6 +643,8 @@ paths:
     $ref: ./paths/quorina/authenticate.yaml
   /quorina/verify-jwt:
     $ref: ./paths/quorina/verify_jwt.yaml
+  /quorina/user-data:
+    $ref: ./paths/quorina/user_data.yaml
 
 components:
   schemas:

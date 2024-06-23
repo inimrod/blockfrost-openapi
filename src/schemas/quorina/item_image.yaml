@@ -1,0 +1,19 @@
+type: object
+properties:
+  id:
+    type: string
+    description: The generation request ID
+  prompt:
+    type: string
+    description: The text prompt that was turned into image
+  image:
+    type: string
+    description: Filename of the generated image
+  timestamp:
+    type: string
+    description: Datetime ISO string
+required:
+  - id
+  - prompt
+  - image
+  - timestamp

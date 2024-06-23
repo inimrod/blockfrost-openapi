@@ -1,0 +1,23 @@
+type: object
+properties:
+  id:
+    type: string
+    description: The generation request ID
+  prompt:
+    type: string
+    description: The text prompt that was turned into speech
+  voice:
+    type: string
+    description: The voice option selected
+  audio:
+    type: string
+    description: Filename of the generated audio
+  timestamp:
+    type: string
+    description: Datetime ISO string
+required:
+  - id
+  - prompt
+  - voice
+  - audio
+  - timestamp
