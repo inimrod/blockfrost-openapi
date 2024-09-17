@@ -4713,6 +4713,12 @@ export interface paths {
      * @description Confirm validity of user-submited CIP-30 signedData.
      */
     post: {
+      parameters: {
+        header: {
+          "Content-Type": "application/json";
+          authToken: string;
+        };
+      };
       /** @description The signed wallet verification message package. */
       requestBody: {
         content: {
