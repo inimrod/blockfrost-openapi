@@ -578,61 +578,44 @@ paths:
 
   /havoc/staking/global-stats:
     $ref: ./paths/havoc/staking/global_stats.yaml
-
   /havoc/staking/accounts:
     $ref: ./paths/havoc/staking/accounts_all.yaml
-
   /havoc/staking/{account}/assets:
     $ref: ./paths/havoc/staking/account_assets.yaml
-
   /havoc/staking/{account}/rewards:
     $ref: ./paths/havoc/staking/account_rewards.yaml
-
   /havoc/staking/{asset}/utxo:
     $ref: ./paths/havoc/staking/token_utxo.yaml
-
   /havoc/staking/stake-list/{epoch}:
     $ref: ./paths/havoc/staking/stake_list.yaml
-
   /havoc/staking/submit:
     $ref: ./paths/havoc/staking/submit.yaml
-
   /havoc/voq-drop/claimable/{stake_addr}:
     $ref: ./paths/havoc/voq-drop/claimable.yaml
-
   /havoc/voq-drop/submit:
     $ref: ./paths/havoc/voq-drop/submit.yaml
-
   /havoc/wallets/pending-verify/{sid}:
     $ref: ./paths/havoc/wallets/pending_verify.yaml
-
   /havoc/wallets/verify:
     $ref: ./paths/havoc/wallets/verify.yaml
-
   /havoc/wallets/verify-hw:
     $ref: ./paths/havoc/wallets/verify_hw.yaml
-
   /havoc/s2/mint:
     $ref: ./paths/havoc/s2/mint.yaml
-
   /havoc/s2/available:
     $ref: ./paths/havoc/s2/available.yaml
-
   /havoc/s2/image/{fname}:
     $ref: ./paths/havoc/s2/image.yaml
 
+
   /dtknzr/metadata/{asset}:
     $ref: ./paths/dtknzr/metadata.yaml
-
   /dtknzr/user/{stake_addr}:
     $ref: ./paths/dtknzr/user.yaml
-
   /dtknzr/detokenize:
-    $ref: ./paths/dtknzr/detokenize.yaml
-  
+    $ref: ./paths/dtknzr/detokenize.yaml  
   /dtknzr/referrer/{stake_addr}:
     $ref: ./paths/dtknzr/referrer.yaml
-
   /dtknzr/withdraw:
     $ref: ./paths/dtknzr/withdraw.yaml
 
@@ -647,6 +630,10 @@ paths:
     $ref: ./paths/quorina/user_data.yaml
   /quorina/gen-speech:
     $ref: ./paths/quorina/gen_speech.yaml
+
+  # general-purpose endpoints
+  /validate-sgd-msg:
+    $ref: ./paths/finitum/validate_sgd_msg.yaml
 
 components:
   schemas:
