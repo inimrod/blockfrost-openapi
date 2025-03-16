@@ -3902,6 +3902,47 @@ export interface paths {
             };
         };
     };
+    "/havoc/staking/skulliance-claim": {
+        /**
+         * Havoc Worlds x Skulliance rewards claiming hook
+         * @description Get Skulliance staking rewards
+         */
+        post: {
+            parameters: {
+                header: {
+                    "Havoc-Key": string;
+                };
+            };
+            /** @description Details of the staker who is claiming rewards */
+            requestBody: {
+                content: {
+                    /**
+                     * @example {
+                     *   'claimer_address': 'stake_test1upcgzhcwewzectzjhujc2q82p6x3vcuyp550urzjr969k2ggsaujw'
+                     * }
+                     */
+                    "application/json": {
+                        /** @description Stake or UTXO address of the staker */
+                        claimer_address: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Returns claim ticket id in UUIDv4 format */
+                200: {
+                    content: {
+                        "application/json": string;
+                    };
+                };
+                400: components["responses"]["400"];
+                403: components["responses"]["403"];
+                404: components["responses"]["404"];
+                418: components["responses"]["418"];
+                429: components["responses"]["429"];
+                500: components["responses"]["500"];
+            };
+        };
+    };
     "/havoc/voq-drop/claimable/{stake_addr}": {
         /**
          * Havoc Worlds $VOQ token initial drop claimable amount

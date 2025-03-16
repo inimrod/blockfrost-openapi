@@ -590,6 +590,8 @@ paths:
     $ref: ./paths/havoc/staking/stake_list.yaml
   /havoc/staking/submit:
     $ref: ./paths/havoc/staking/submit.yaml
+  /havoc/staking/skulliance-claim:
+    $ref: ./paths/havoc/staking/skulliance_claim.yaml
   /havoc/voq-drop/claimable/{stake_addr}:
     $ref: ./paths/havoc/voq-drop/claimable.yaml
   /havoc/voq-drop/submit:

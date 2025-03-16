@@ -5600,6 +5600,60 @@ paths:
           $ref: '#/components/responses/429'
         '500':
           $ref: '#/components/responses/500'
+  /havoc/staking/skulliance-claim:
+    post:
+      tags:
+        - Havoc » Staking » Skulliance Claim
+      summary: Havoc Worlds x Skulliance rewards claiming hook
+      description: Get Skulliance staking rewards
+      requestBody:
+        description: |
+          Details of the staker who is claiming rewards
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: |
+                An object containing the details of the staker who is claiming rewards.
+              properties:
+                claimer_address:
+                  type: string
+                  description: Stake or UTXO address of the staker
+              required:
+                - claimer_address
+            example: |
+              {
+                'claimer_address': 'stake_test1upcgzhcwewzectzjhujc2q82p6x3vcuyp550urzjr969k2ggsaujw'
+              }
+      parameters:
+        - in: header
+          name: Havoc-Key
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns claim ticket id in UUIDv4 format
+          content:
+            application/json:
+              schema:
+                type: string
+                minLength: 36
+                maxLength: 36
+                example: 42559d4e-1698-413a-b97b-595d8a14838a
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '418':
+          $ref: '#/components/responses/418'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
   /havoc/voq-drop/claimable/{stake_addr}:
     get:
       tags:
