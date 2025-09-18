@@ -604,6 +604,8 @@ paths:
     $ref: ./paths/havoc/wallets/verify_hw.yaml
   /havoc/s2/mint:
     $ref: ./paths/havoc/s2/mint.yaml
+  /havoc/s2/shuffle:
+    $ref: ./paths/havoc/s2/shuffle.yaml
   /havoc/s2/available:
     $ref: ./paths/havoc/s2/available.yaml
   /havoc/s2/image/{fname}:
