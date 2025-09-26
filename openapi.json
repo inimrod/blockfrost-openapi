@@ -8176,13 +8176,13 @@
         "summary": "Shuffle Havoc Worlds Season 2 NFTs",
         "description": "Submit txs to shuffle Havoc Worlds Season 2",
         "requestBody": {
-          "description": "Handled via WS endpoint\n",
+          "description": "The shuffle request transaction to submit, serialized in CBOR. Plus the inputs also in full CBOR.\n",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "description": "An object containing the transaction to submit, serialized in CBOR.\n",
+                "description": "An object containing the transaction to submit, serialized in CBOR; and the inputs also in full CBOR.\n",
                 "properties": {
                   "txCbor": {
                     "type": "string",

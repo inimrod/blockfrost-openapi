@@ -4188,7 +4188,7 @@ export interface paths {
      * @description Submit txs to shuffle Havoc Worlds Season 2
      */
     post: {
-      /** @description Handled via WS endpoint */
+      /** @description The shuffle request transaction to submit, serialized in CBOR. Plus the inputs also in full CBOR. */
       requestBody: {
         content: {
           /**
